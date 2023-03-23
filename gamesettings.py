@@ -9,8 +9,8 @@ class Image_button_maker():
         self.surface = surface
         self.image = pygame.image.load(img)
         self.rect = self.image.get_rect()
-        self.rect.x = x
-        self.rect.y = y
+        self.rect.centerx = x
+        self.rect.centery = y
 
     def button(self):
         self.surface.blit(self.image, self.rect)
