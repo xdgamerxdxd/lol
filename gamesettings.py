@@ -1,31 +1,7 @@
 import pygame
-import time
 import sys
+from functions import *
 from pygame.locals import *
-
-class Image_button_maker():
-    def __init__(self, img, surface, x, y):
-        super(Image_button_maker, self).__init__()
-        self.surface = surface
-        self.image = pygame.image.load(img)
-        self.rect = self.image.get_rect()
-        self.rect.centerx = x
-        self.rect.centery = y
-
-    def button(self):
-        self.surface.blit(self.image, self.rect)
-
-class Button():
-    def __init__(self, surface, text, font, color, bcolor, sizex, sizey, x, y):
-        button = pygame.Rect(x, y, sizex, sizey)
-        self.rect = pygame.draw.rect(surface, bcolor, button)
-        draw_text(text, font, color, surface, self.rect.centerx, self.rect.centery)
-
-def draw_text(text, font, color, surface, x, y):
-    textobj = font.render(text, 1, color)
-    textrect = textobj.get_rect()
-    textrect.center = (x, y)
-    surface.blit(textobj, textrect)
 
 class Settings():
     def __init__(self, screen):
