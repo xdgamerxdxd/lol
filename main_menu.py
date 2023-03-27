@@ -65,7 +65,10 @@ class Menu():
                 if event.type == MOUSEBUTTONUP:
                     if event.button == 1:
                         click = False
-    
+                if event.type == KEYDOWN:
+                    if event.key == K_ESCAPE:
+                        self.state = False
+        
                 for box in self.input_boxes:
                     box.handle_event(event)
 
@@ -87,7 +90,7 @@ class Menu():
 def game():
 
     pygame.init()
-    screen = pygame.display.set_mode((width, height))
+    screen = pygame.display.set_mode((width, height), pygame.FULLSCREEN)
     clock = pygame.time.Clock()
 
     game = Menu(screen)
