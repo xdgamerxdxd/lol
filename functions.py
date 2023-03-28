@@ -62,3 +62,22 @@ class Button():
         button = pygame.Rect(x, y, sizex, sizey)
         self.rect = pygame.draw.rect(surface, bcolor, button)
         draw_text(text, font, color, surface, self.rect.centerx, self.rect.centery)
+
+class clicke():
+    def __init__(self):
+        self.c = 0
+        self.cl = False
+    
+    def run(self, funct, click, mx, my,):
+
+        if funct.rect.collidepoint((mx, my)):
+            if click and self.cl == False:
+                self.c += 0.5
+                self.cl = True
+            if self.cl == True and click == False:
+                self.c += 0.5
+                self.cl = False
+
+
+        if self.cl == True and click == False:
+            self.cl = False

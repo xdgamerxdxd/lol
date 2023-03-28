@@ -1,4 +1,5 @@
 import pygame
+from functions import *
 
 global ty
 ty = 1040
@@ -26,13 +27,9 @@ class Taskbar(pygame.sprite.Sprite):
         self.image.fill(color)
         self.rect = self.image.get_rect()
         self.rect.y = ty
-        self.wbutton = Windows_Button()
     
-    def draw(self, screen, click):
-        mx, my = pygame.mouse.get_pos()
+    def draw(self, screen):
         screen.blit(self.image, self.rect)
-        screen.blit(self.wbutton.image, self.wbutton.rect)
-        self.wbutton.run(click, screen, mx, my)
 
 class Windows_Button(pygame.sprite.Sprite):
     def __init__(self):
@@ -40,18 +37,25 @@ class Windows_Button(pygame.sprite.Sprite):
         self.image = pygame.image.load('icons/wlogo.png')
         self.rect = self.image.get_rect()
         self.rect.y = ty
-        self.state = False
+        self.activ = False
+        self.cle = clicke()
+    
+    def run(self, mx, my, funct, click):
+        self.cle.run(self, click, mx, my)
 
-    def run(self, click, screen, mx, my):
-        opt = Options(400, 500, (55, 55, 55))
-        if self.rect.collidepoint((mx, my)):
-            if click:
-                self.state = True
-                click = False
-        if self.state == True:
-            opt.draw(screen)
-            if self.state == True and click:
-                self.state = False
+        if self.cle.c == 1 and self.activ == False:
+            self.cle.c = 0
+            self.activ = True 
+
+        if self.activ == True:
+            funct.state = True
+
+        if self.cle.c == 1 and self.activ == True:
+            self.cle.c = 0
+            funct.state = False
+            self.activ = False
+
+
 
 
 
@@ -65,8 +69,13 @@ class Options(pygame.sprite.Sprite):
         self.image.fill(color)
         self.rect = self.image.get_rect()
         self.rect.bottom = ty + 500
+        self.state = False
 
-    def draw(self, screen):
-        while self.rect.bottom > ty:
-            self.rect.bottom -= 1
-            screen.blit(self.image, self.rect)
+    def run(self):
+        
+        if self.state == True:
+            if self.rect.bottom > ty:
+                self.rect.bottom -= 10
+        else:
+            if self.rect.bottom < ty + 500:
+                self.rect.bottom += 10
