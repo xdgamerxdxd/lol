@@ -21,10 +21,9 @@ class Lockscreen(pygame.sprite.Sprite):
             self.rect.y -= 1000
 
 class Taskbar(pygame.sprite.Sprite):
-    def __init__(self, width, height, color):
+    def __init__(self):
         super(Taskbar, self).__init__()
-        self.image = pygame.Surface((width, height))
-        self.image.fill(color)
+        self.image = pygame.image.load('gui/taskbar.png')
         self.rect = self.image.get_rect()
         self.rect.y = ty
     
