@@ -43,17 +43,20 @@ class Windows_Button(pygame.sprite.Sprite):
     def run(self, mx, my, funct, click):
         self.cle.run(self, click, mx, my)
 
+        # if clicked when unactive then make active
         if self.cle.c == 1 and self.activ == False:
             self.cle.c = 0
             self.activ = True 
-
-        if self.activ == True:
+        # is active
+        if self.activ:
             funct.state = True
 
-        if self.cle.c == 1 and self.activ == True:
+        # if clicked when active make unactive
+        if self.cle.c == 1 and self.activ:
             self.cle.c = 0
             funct.state = False
             self.activ = False
+        
 
 
 

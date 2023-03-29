@@ -69,15 +69,20 @@ class clicke():
         self.cl = False
     
     def run(self, funct, click, mx, my,):
-
+        
+        print(self.c)
+        # if on function
         if funct.rect.collidepoint((mx, my)):
+            # if click down add 0.5 and activate cl
             if click and self.cl == False:
-                self.c += 0.5
                 self.cl = True
+                self.c += 0.5
+            # if click add another 0.5 and deactivate cl
             if self.cl == True and click == False:
                 self.c += 0.5
                 self.cl = False
 
-
-        if self.cl == True and click == False:
+        # if cl is true and mouse not on function and click or unclik make c 0 and deactivate cl
+        if self.cl == True and click == False and funct.rect.collidepoint((mx, my)) == False or self.cl == True and click and funct.rect.collidepoint((mx, my)) == False:
+            self.c = 0
             self.cl = False
