@@ -90,7 +90,7 @@ class Menu():
 def game():
 
     pygame.init()
-    screen = pygame.display.set_mode((width, height))
+    screen = pygame.display.set_mode((width, height), pygame.FULLSCREEN)
     clock = pygame.time.Clock()
 
     game = Menu(screen)
