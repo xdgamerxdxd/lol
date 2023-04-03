@@ -32,7 +32,7 @@ class Menu():
         set = Image_button_maker(f'{m}cogwheel.png', self.screen, 1870, 1030)
         click = False
         while self.state:
-            pygame.Surface.blit(self.screen, pygame.image.load(f'{m}lockscreenb.png'), (0, 0))
+            pygame.Surface.blit(self.screen, pygame.image.load(f'{m}lockscreen.png'), (0, 0))
             pygame.Surface.blit(self.screen, pygame.image.load(f'{m}user.png'), (840, 300))
             draw_text('Create user', font, (255, 255, 255), self.screen, 920, 500)
             set.run()
@@ -90,7 +90,7 @@ class Menu():
 def game():
 
     pygame.init()
-    screen = pygame.display.set_mode((width, height), pygame.FULLSCREEN)
+    screen = pygame.display.set_mode((width, height)) #, pygame.FULLSCREEN)
     clock = pygame.time.Clock()
 
     game = Menu(screen)

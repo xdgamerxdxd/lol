@@ -70,7 +70,6 @@ class clicke():
     
     def run(self, funct, click, mx, my,):
         
-        print(self.c)
         # if on function
         if funct.rect.collidepoint((mx, my)):
             # if click down add 0.5 and activate cl
