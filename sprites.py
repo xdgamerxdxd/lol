@@ -90,7 +90,7 @@ class Window_Taskbar(pg.sprite.Sprite):
         self.y = y
         self.r = False
 
-    def run(self, mx, my, click):
+    def run(self, mx, my, click, dx, dy):
         if self.r == True:
             self.rect.x = self.x
             self.rect.y = self.y
@@ -100,8 +100,8 @@ class Window_Taskbar(pg.sprite.Sprite):
             else:
                 self.drag = False
         if self.drag == True:
-            self.rect.x = mx - 100
-            self.rect.y = my - 30
+                self.rect.x += dx
+                self.rect.y += dy
         self.r = False
 
 class Exit_Button(pg.sprite.Sprite):

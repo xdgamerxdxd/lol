@@ -25,6 +25,7 @@ class Game():
         click = False
         while self.state:
             mx, my = pygame.mouse.get_pos()
+            dx, dy = pygame.mouse.get_rel()
 
             self.screen.fill((45, 45, 45))
             self.all.draw(self.screen)
@@ -32,7 +33,7 @@ class Game():
             self.exit.run(mx, my, click, self.gwintb.rect.x + 460, self.gwintb.rect.y + 5)
             self.map.run(mx, my, click)
             self.wbutton.run(mx, my, self.opt, click)
-            self.gwintb.run(mx, my, click)
+            self.gwintb.run(mx, my, click, dx, dy)
             self.gwindow.run(self.gwintb.rect.x, self.gwintb.rect.y)
             self.opt.run()
 
