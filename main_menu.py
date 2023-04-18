@@ -15,6 +15,7 @@ class Menu():
         self.screen = screen
         self.state = True
         self.entities()
+        self.si = False
     
     def entities(self):
         self.all = pygame.sprite.Group()
@@ -29,13 +30,13 @@ class Menu():
     def run(self):
         font = pygame.font.SysFont(None, 70)
         afont = pygame.font.SysFont(None, 35)
-        set = Image_button_maker(f'{m}cogwheel.png', self.screen, 1870, 1030)
+        #set = Image_button_maker(f'{m}cogwheel.png', self.screen, 1870, 1030)
         click = False
         while self.state:
             pygame.Surface.blit(self.screen, pygame.image.load(f'{m}lockscreen.png'), (0, 0))
             pygame.Surface.blit(self.screen, pygame.image.load(f'{m}user.png'), (840, 300))
             draw_text('Create user', font, (255, 255, 255), self.screen, 920, 500)
-            set.run()
+            #set.run()
             btn = Button(self.screen, '', afont, (255, 255, 255), (100, 100, 100), 206, 46, 817, 547)
             button = Button(self.screen, '', afont, (255, 255, 255), (100, 100, 100), 205, 46, 817, 597)
             button1 = Button(self.screen, '', afont, (255, 255, 255), (100, 100, 100), 75, 46, 1000, 597)
@@ -44,15 +45,20 @@ class Menu():
                 box.draw(self.screen)
             self.all.draw(self.screen)
             mx, my = pygame.mouse.get_pos()
-            self.l.run(mx, my, click)
+            self.l.run(mx, my, click) 
+            
 
             if button1.rect.collidepoint((mx, my)):
                 if click:
+                    self.si = True
                     self.game()
                 
-            if set.rect.collidepoint((mx, my)):
-                if click:
-                    self.settings()
+            if self.si == True:
+                click = False
+                
+            # if set.rect.collidepoint((mx, my)):
+            #     if click:
+            #         self.settings()
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -77,10 +83,10 @@ class Menu():
             
             pygame.display.update()
 
-    def settings(self):
-        settings = Settings(self.screen)
-        settings.state = True
-        settings.run()
+    # def settings(self):
+    #     settings = Settings(self.screen)
+    #     settings.state = True
+    #     settings.run()
     
     def game(self):
         game = Game(self.screen)

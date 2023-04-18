@@ -71,7 +71,7 @@ class Map_Icon(pg.sprite.Sprite):
 class Game_Window(pg.sprite.Sprite):
     def __init__(self, height, width, color):
         super(Game_Window, self).__init__()
-        self.image = pg.Surface((width, height))
+        self.image = pg.Surface((width + 1000, height))
         self.image.fill(color)
         self.rect = self.image.get_rect()
         self.rect.bottom = ty / 2
